@@ -1,0 +1,51 @@
+@import "../../column/index.scss";
+
+.board-detail-container {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  bottom: 0;
+  left: 150px;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+  background-color: #0179bf;
+  overflow-x: auto;
+  overflow-y: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+
+  .add-list-button {
+    margin: 1rem 0.25rem 0;
+    .add-button {
+      width: 272px;
+      height: auto;
+      min-height: 32px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      margin: 0 0.25rem;
+      padding: 0.625rem;
+      vertical-align: top;
+      white-space: nowrap;
+      background: #ffffff3d;
+      cursor: pointer;
+      border-radius: 0.188rem;
+      transition: background 85ms ease-in, opacity 40ms ease-in,
+        border-color 85ms ease-in;
+      &:hover {
+        background-color: #ffffff52;
+      }
+    }
+    .add-button,
+    .add-button svg {
+      color: #fff;
+    }
+  }
+
+  .board-add-column-form-container {
+    @extend .column-wrapper;
+  }
+}
