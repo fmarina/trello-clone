@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Draggable } from "react-beautiful-dnd";
-import { EditOutlined, DeleteOutlineOutlined } from "@mui/icons-material";
-import "./index.scss";
+import { Card as CardComponent } from "./Card";
 import { DELETE_CARD, UPDATE_CARD } from "./actions";
 import useModal from "../commons/hooks/useModal";
-import Modal from "../commons/components/Modal";
-import {} from "react-redux";
 
 const Card = ({ boardId, columnId, id, cardText, index }) => {
   const dispatch = useDispatch();
-  const { isOpen, onClose, onOpen } = useModal();
   const [cardTitle, setCardTitle] = useState(cardText);
+  const { isOpen, onClose, onOpen } = useModal();
+
+  const handleOnChange = (e) => setCardTitle(e.target.value);
 
   const handleOnClickDelete = () => {
     dispatch({
@@ -19,8 +17,6 @@ const Card = ({ boardId, columnId, id, cardText, index }) => {
       payload: { boardId, columnId, cardId: id },
     });
   };
-
-  const handleOnChange = (e) => setCardTitle(e.target.value);
 
   const handleOnClose = () => {
     onClose();
@@ -45,36 +41,17 @@ const Card = ({ boardId, columnId, id, cardText, index }) => {
   };
 
   return (
-    <Draggable draggableId={id} index={index}>
-      {(provided) => (
-        <li
-          className="list-card"
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-        >
-          <p>{cardTitle}</p>
-          <Modal isOpen={isOpen} onClose={handleOnClose}>
-            <form className="card-edit-form" onSubmit={handleOnSubmit}>
-              <input
-                type="textarea"
-                value={cardTitle}
-                onChange={handleOnChange}
-              />
-              <button type="submit">Edit</button>
-            </form>
-          </Modal>
-          <div>
-            <span>
-              <EditOutlined onClick={onOpen} />
-            </span>
-            <span>
-              <DeleteOutlineOutlined onClick={handleOnClickDelete} />
-            </span>
-          </div>
-        </li>
-      )}
-    </Draggable>
+    <CardComponent
+      id={id}
+      index={index}
+      cardTitle={cardTitle}
+      modalIsOpen={isOpen}
+      modalOnOpen={onOpen}
+      modalOnClose={handleOnClose}
+      handleOnSubmit={handleOnSubmit}
+      handleOnChange={handleOnChange}
+      handleOnClickDelete={handleOnClickDelete}
+    />
   );
 };
 

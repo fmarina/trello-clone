@@ -1,8 +1,7 @@
-import { ADD_BOARD, DELETE_BOARD } from './actions'
+import { ADD_BOARD, DELETE_BOARD } from '../board/actions'
 import { ADD_COLUMN, DELETE_COLUMN, SORT_COLUMNS, UPDATE_COLUMN } from '../column/actions'
 import { ADD_CARD, DELETE_CARD, SORT_CARDS, UPDATE_CARD } from '../card/actions'
-import {UNDO_THE_LAST_ACTION} from '../commons/actions'
-
+import { UNDO_THE_LAST_ACTION } from './actions'
 
 const initialState = {
   boards: [],

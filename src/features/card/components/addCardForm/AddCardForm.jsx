@@ -1,52 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { Close, MoreHoriz } from "@mui/icons-material";
-import nextId from "react-id-generator";
-import { setPrefix } from "react-id-generator";
 import "./AddCardForm.scss";
 import AddButton from "../../../commons/components/AddButton";
-import { ADD_CARD } from "../../actions";
 
-const AddCardForm = ({ boardId, columnId }) => {
-  setPrefix("card-id-");
-  const dispatch = useDispatch();
-  const inputRef = useRef(null);
-  const [cardTitle, setCardTitle] = useState("");
-  const [showAddForm, setShowAddForm] = useState(false);
-
+const AddCardForm = ({
+  handleOnSubmit,
+  handleOnClick,
+  showAddForm,
+  inputRef,
+  cardTitle,
+  handleOnChange,
+  handleOnCloseButton,
+}) => {
   const sectionStyle = `${showAddForm ? "" : "hide"}`;
   const addButtonStyle = `${showAddForm ? "hide" : ""}`;
-
-  const handleOnChange = (e) => setCardTitle(e.target.value);
-
-  const handleOnClick = () => setShowAddForm(true);
-
-  const handleOnCloseButton = () => {
-    setCardTitle("");
-    setShowAddForm(false);
-  };
-
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    if (cardTitle.trim() === "") return;
-    dispatch({
-      type: ADD_CARD,
-      payload: {
-        boardId,
-        columnId,
-        card: {
-          id: nextId(),
-          text: cardTitle,
-        },
-      },
-    });
-    setShowAddForm(false);
-    setCardTitle("");
-  };
-
-  useEffect(() => {
-    if (showAddForm) inputRef.current.focus();
-  }, [showAddForm]);
 
   return (
     <form className="add-card-form" onSubmit={handleOnSubmit}>
@@ -83,4 +50,4 @@ const AddCardForm = ({ boardId, columnId }) => {
   );
 };
 
-export default AddCardForm;
+export { AddCardForm };

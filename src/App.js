@@ -3,7 +3,7 @@ import './App.scss';
 import NavBar from './features/commons/components/NavBar';
 import Sidebar from './features/commons/components/Sidebar';
 import Board from './features/board';
-import BoardDetail from "./features/board/components/BoardDetail";
+import BoardDetail from "./features/board/components/index";
 
 function App() {
   return (

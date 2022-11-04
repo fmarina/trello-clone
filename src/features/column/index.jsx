@@ -4,7 +4,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import { DeleteOutlineOutlined } from "@mui/icons-material";
 import "./index.scss";
 import Card from "../card";
-import AddCardForm from "../card/components/addCardForm/AddCardForm";
+import AddCardForm from "../card/components/addCardForm";
 import { DELETE_COLUMN, UPDATE_COLUMN } from "./actions";
 
 const Column = ({ boardId, columnId, title, cards, index }) => {
