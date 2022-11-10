@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import nextId from "react-id-generator";
 import { setPrefix } from "react-id-generator";
 import { AddCardForm as AddCardFormComponent } from './AddCardForm'
-import { ADD_CARD } from "../../actions";
+import { ADD_CARD } from "../../actionsTypes";
 
 const AddCardForm = ({ boardId, columnId }) => {
   setPrefix("card-id-");

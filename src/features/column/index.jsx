@@ -5,7 +5,7 @@ import { DeleteOutlineOutlined } from "@mui/icons-material";
 import "./index.scss";
 import Card from "../card";
 import AddCardForm from "../card/components/addCardForm";
-import { DELETE_COLUMN, UPDATE_COLUMN } from "./actions";
+import { DELETE_COLUMN, UPDATE_COLUMN } from "./actionsType";
 
 const Column = ({ boardId, columnId, title, cards, index }) => {
   const dispatch = useDispatch();

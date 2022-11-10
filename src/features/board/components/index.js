@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { BoardDetail as BoardDetailComponent } from './BoardDetail'
-import Column from "../../column";
 import {
   sortCardsDifferentColumns,
   sortCardsSameColumn,
 } from "../../card/actions";
 import { sortColumns } from "../../column/actions";
+import { COLUMN, TASK } from "../constants";
 
 const BoardDetail = () => {
   const dispatch = useDispatch();
@@ -19,19 +19,6 @@ const BoardDetail = () => {
   useEffect(() => {
     if (!board) navigate(`/`);
   }, [board, navigate]);
-
-  const columnList = boards?.length
-    ? board?.columns.map(({ id, title, cards }, index) => (
-        <Column
-          key={id}
-          boardId={boardId}
-          columnId={id}
-          title={title}
-          cards={cards}
-          index={index}
-        />
-      ))
-    : null;
 
   const onDragEnd = (result) => {
     const { destination, source, type } = result;
@@ -47,10 +34,10 @@ const BoardDetail = () => {
     const sortProps = { boardId, board, source, destination }
 
     // Dragging columns
-    if (type === "column") dispatch(sortColumns({...sortProps}));
+    if (type === COLUMN) dispatch(sortColumns({...sortProps}));
 
     // Dragging cards
-    if (type === "task") {
+    if (type === TASK) {
 
       // if dropped inside the same column
       if (source.droppableId === destination.droppableId) {
@@ -65,7 +52,7 @@ const BoardDetail = () => {
   };
 
   return (
-    <BoardDetailComponent columnList={columnList} onDragEnd={onDragEnd} />
+    <BoardDetailComponent board={board} onDragEnd={onDragEnd} />
   );
 };
 

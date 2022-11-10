@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Card as CardComponent } from "./Card";
-import { DELETE_CARD, UPDATE_CARD } from "./actions";
+import { DELETE_CARD, UPDATE_CARD } from "./actionsTypes";
 import useModal from "../commons/hooks/useModal";
 
 const Card = ({ boardId, columnId, id, cardText, index }) => {
